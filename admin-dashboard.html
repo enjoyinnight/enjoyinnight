@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard | Bazar Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body" data-require-auth="true">
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <img class="brand-logo" data-bind="logo" alt="Site logo">
+      <span class="brand-name" data-bind="siteName">Bazar</span>
+    </div>
+    <a class="nav-link active" href="admin-dashboard.html">📦 Products</a>
+    <a class="nav-link" href="admin-settings.html">⚙️ Settings</a>
+    <a class="nav-link" href="index.html" target="_blank">🌐 View site</a>
+    <div class="nav-spacer"></div>
+    <button class="nav-link" id="logoutBtn" style="text-align:left;border:none;background:none;width:100%;">🚪 Logout</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h1>Products</h1>
+      <button class="btn btn-primary" id="addProductBtn">+ Add New Product</button>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="num" id="statTotal">0</div><div class="lbl">Total listings</div></div>
+      <div class="stat-card"><div class="num" id="statCities">0</div><div class="lbl">Cities covered</div></div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr><th>Image</th><th>Name</th><th>Price</th><th>City</th><th>WhatsApp</th><th>Actions</th></tr>
+        </thead>
+        <tbody id="productTableBody"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<script src="js/settings.js"></script>
+<script src="js/drive-upload.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

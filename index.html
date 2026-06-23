@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bazar | Buy & sell, the local way</title>
+<meta name="description" content="Browse local product listings — electronics, vehicles, furniture and more.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-top">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" data-bind="logo" alt="Site logo">
+      <span class="brand-name" data-bind="siteName">Bazar</span>
+    </a>
+    <span class="header-tagline" data-bind="headerTitle">Buy &amp; sell, the local way</span>
+
+    <div class="search-bar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" id="searchInput" placeholder="Search products by name…" aria-label="Search products">
+    </div>
+
+    <div class="header-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark / light theme">
+        <svg class="theme-toggle-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="theme-toggle-icon-dark" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+      <a href="admin.html" class="btn-admin-link">Admin</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="filter-row" id="cityFilterRow"><!-- chips injected by app.js --></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <span class="hero-eyebrow">Local marketplace</span>
+    <h1 data-bind="headerTitle">Buy &amp; sell, the local way</h1>
+    <p>Browse real listings from people nearby — message sellers directly on WhatsApp, no signup needed.</p>
+  </div>
+</section>
+
+<main class="container">
+  <div class="listing-meta">
+    <span id="resultCount">0 listings</span>
+    <span>Tap a card for full details</span>
+  </div>
+
+  <div class="product-grid" id="productGrid">
+    <!-- product cards injected by app.js -->
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span data-bind="siteName">Bazar</span> — built with HTML, CSS &amp; JavaScript only. No backend required.
+  </div>
+</footer>
+
+<!-- ===================== Product Detail Modal ===================== -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-card">
+    <button class="modal-close" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div class="modal-img-wrap">
+      <img class="modal-img" src="" alt="">
+    </div>
+    <div class="modal-info">
+      <h2 data-f="name">Product name</h2>
+      <div class="modal-price-tag" data-f="price">₹0</div>
+
+      <div class="modal-meta-grid">
+        <div><span class="label">Age</span><span class="value" data-f="age">—</span></div>
+        <div><span class="label">City</span><span class="value" data-f="city">—</span></div>
+        <div style="grid-column:1/-1;"><span class="label">Address</span><span class="value" data-f="address">—</span></div>
+      </div>
+
+      <div class="modal-desc">
+        <h4>Description</h4>
+        <p data-f="description">—</p>
+      </div>
+
+      <a class="btn-whatsapp" href="#" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8 8 0 005.4 17l-1 3.6 3.7-1A8 8 0 1017.6 6.3zM12 19a6.9 6.9 0 01-3.5-1l-.3-.1-2.5.6.7-2.4-.2-.3A6.9 6.9 0 1119 12 7 7 0 0112 19zm3.8-5.2c-.2-.1-1.2-.6-1.4-.6s-.3-.1-.5.1l-.6.8c-.1.1-.2.2-.4.1-.9-.4-1.8-1.1-2.5-2.1-.1-.2-.1-.3 0-.4l.4-.6c.1-.2.1-.3 0-.5l-.6-1.3c-.1-.3-.3-.3-.5-.3h-.4c-.2 0-.4.1-.5.3-.2.3-.7 1-.7 1.9 0 1 .7 2 .8 2.1 1.1 1.5 2.4 2.5 4 3 .2.1.4.1.6.1.5 0 1.5-.5 1.7-1 .2-.5.2-.9.1-1z"/></svg>
+        Contact on WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+</script>
+</body>
+</html>

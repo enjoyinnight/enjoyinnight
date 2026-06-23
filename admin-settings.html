@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | Bazar Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body" data-require-auth="true">
+
+<div class="admin-shell">
+  <aside class="admin-sidebar">
+    <div class="brand">
+      <img class="brand-logo" data-bind="logo" alt="Site logo">
+      <span class="brand-name" data-bind="siteName">Bazar</span>
+    </div>
+    <a class="nav-link" href="admin-dashboard.html">📦 Products</a>
+    <a class="nav-link active" href="admin-settings.html">⚙️ Settings</a>
+    <a class="nav-link" href="index.html" target="_blank">🌐 View site</a>
+    <div class="nav-spacer"></div>
+    <button class="nav-link" id="logoutBtn" style="text-align:left;border:none;background:none;width:100%;">🚪 Logout</button>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar"><h1>Website Settings</h1></div>
+
+    <div class="form-card" style="margin-bottom:24px;">
+      <h3 style="margin-top:0;">Branding</h3>
+      <form id="settingsForm" class="settings-grid">
+        <div class="logo-preview-row">
+          <img id="logoPreview" alt="Logo preview">
+          <div class="field" style="margin:0;flex:1;">
+            <label for="logoFile">Website Logo</label>
+            <input type="file" id="logoFile" accept="image/*">
+          </div>
+        </div>
+        <div class="field"><label for="siteName">Website Name</label><input type="text" id="siteName" required></div>
+        <div class="field"><label for="headerTitle">Header Title / Tagline</label><input type="text" id="headerTitle" required></div>
+        <div class="form-actions"><button type="submit" class="btn btn-primary">Save Settings</button></div>
+      </form>
+    </div>
+
+    <div class="form-card">
+      <h3 style="margin-top:0;">Admin Login Credentials</h3>
+      <form id="credsForm" class="settings-grid">
+        <div class="field"><label for="newUsername">Username</label><input type="text" id="newUsername" required></div>
+        <div class="field"><label for="newPassword">New Password</label><input type="password" id="newPassword" placeholder="Enter a new password" required></div>
+        <div class="form-actions"><button type="submit" class="btn btn-outline">Update Credentials</button></div>
+      </form>
+    </div>
+  </main>
+</div>
+
+<script src="js/settings.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

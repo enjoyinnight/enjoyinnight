@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product | Bazar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  .pdp-wrap { max-width: 980px; margin: 32px auto; }
+  .pdp-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .pdp-img-wrap { background: var(--teal-200); }
+  .pdp-img { width: 100%; height: 100%; object-fit: cover; min-height: 320px; }
+  .pdp-info { padding: 32px; display: flex; flex-direction: column; gap: 14px; }
+  .back-link { display: inline-flex; gap: 6px; align-items: center; color: var(--text-soft); font-size: .88rem; margin-bottom: 14px; }
+  @media (max-width: 760px) { .pdp-card { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container header-top">
+    <a href="index.html" class="brand">
+      <img class="brand-logo" data-bind="logo" alt="Site logo">
+      <span class="brand-name" data-bind="siteName">Bazar</span>
+    </a>
+    <div class="header-actions" style="margin-left:auto;">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <svg class="theme-toggle-icon-light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+        <svg class="theme-toggle-icon-dark" style="display:none" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="container pdp-wrap">
+  <a href="index.html" class="back-link">&larr; Back to all listings</a>
+  <div class="pdp-card" id="pdpCard">
+    <!-- filled by inline script below -->
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container"><span data-bind="siteName">Bazar</span> — built with HTML, CSS &amp; JavaScript only.</div>
+</footer>
+
+<script src="js/settings.js"></script>
+<script src="js/app.js"></script>
+<script>
+  document.getElementById("themeToggle").addEventListener("click", toggleTheme);
+
+  // Read ?id=xxx from the URL and render a full product detail page.
+  (function renderStandaloneProduct() {
+    const id = new URLSearchParams(window.location.search).get("id");
+    const product = getProducts().find(p => p.id === id);
+    const card = document.getElementById("pdpCard");
+
+    if (!product) {
+      card.innerHTML = `<div style="padding:60px;text-align:center;grid-column:1/-1;">
+        <h2>Product not found</h2>
+        <p>This listing may have been removed. <a href="index.html">Browse all listings</a>.</p>
+      </div>`;
+      return;
+    }
+
+    card.innerHTML = `
+      <div class="pdp-img-wrap"><img class="pdp-img" src="${product.imageUrl}" alt="${escapeHtml(product.name)}"></div>
+      <div class="pdp-info">
+        <h1>${escapeHtml(product.name)}</h1>
+        <div class="modal-price-tag">${formatPrice(product.price)}</div>
+        <div class="modal-meta-grid">
+          <div><span class="label">Age</span><span class="value">${escapeHtml(product.age || "—")}</span></div>
+          <div><span class="label">City</span><span class="value">${escapeHtml(product.city || "—")}</span></div>
+          <div style="grid-column:1/-1;"><span class="label">Address</span><span class="value">${escapeHtml(product.address || "—")}</span></div>
+        </div>
+        <div class="modal-desc">
+          <h4>Description</h4>
+          <p>${escapeHtml(product.description || "No description provided.")}</p>
+        </div>
+        <a class="btn-whatsapp" href="${buildWhatsAppLink(product)}" target="_blank" rel="noopener">Contact on WhatsApp</a>
+      </div>`;
+
+    document.title = `${product.name} | Bazar`;
+  })();
+</script>
+</body>
+</html>
