@@ -1,0 +1,153 @@
+/* ============================================================
+   BAZAR — Admin Panel Stylesheet
+   Loaded alongside style.css; reuses the same design tokens
+   ("Market Ledger" palette) and adds layout for the dashboard
+   shell, tables, login screen, and settings forms.
+   ============================================================ */
+
+.admin-body { background: var(--bg); min-height: 100vh; }
+
+/* ---------- Login screen ---------- */
+.login-wrap {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    repeating-linear-gradient(135deg, transparent, transparent 38px, rgba(31,122,108,0.05) 38px, rgba(31,122,108,0.05) 76px),
+    var(--bg);
+}
+
+.login-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 38px 34px;
+  width: 100%;
+  max-width: 380px;
+  box-shadow: var(--shadow-lg);
+}
+
+.login-card .brand { justify-content: center; margin-bottom: 6px; }
+.login-card h1 { text-align: center; font-size: 1.4rem; }
+.login-card .sub { text-align: center; color: var(--text-soft); font-size: .85rem; margin-bottom: 22px; }
+.login-hint { font-size: .76rem; color: var(--text-soft); text-align: center; margin-top: 14px; }
+.login-error { color: var(--danger); font-size: .82rem; text-align: center; min-height: 18px; margin-bottom: 6px; }
+
+/* ---------- Dashboard shell ---------- */
+.admin-shell { display: flex; min-height: 100vh; }
+
+.admin-sidebar {
+  width: 230px;
+  flex-shrink: 0;
+  background: var(--teal-900);
+  color: #eef3f1;
+  padding: 22px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+[data-theme="dark"] .admin-sidebar { background: #081715; }
+
+.admin-sidebar .brand { color: #fff; margin-bottom: 24px; padding: 0 6px; }
+.admin-sidebar .brand-name { color: #fff; font-size: 1.2rem; }
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  color: #cfe3df;
+  font-size: .9rem;
+  transition: background var(--transition);
+}
+.nav-link:hover { background: rgba(255,255,255,.08); }
+.nav-link.active { background: var(--amber-500); color: #1a1206; font-weight: 600; }
+
+.nav-spacer { flex: 1; }
+
+.admin-main { flex: 1; padding: 28px 32px; max-width: 100%; overflow-x: hidden; }
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.admin-topbar h1 { font-size: 1.5rem; margin: 0; }
+
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  margin-bottom: 26px;
+}
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+.stat-card .num { font-family: var(--font-mono); font-size: 1.6rem; font-weight: 700; color: var(--teal-500); }
+.stat-card .lbl { font-size: .78rem; color: var(--text-soft); text-transform: uppercase; letter-spacing: .03em; }
+
+/* ---------- Tables ---------- */
+.table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+}
+table.admin-table { width: 100%; border-collapse: collapse; min-width: 680px; }
+table.admin-table th, table.admin-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: .88rem;
+}
+table.admin-table th { color: var(--text-soft); font-weight: 600; font-size: .76rem; text-transform: uppercase; letter-spacing: .03em; }
+table.admin-table tr:last-child td { border-bottom: none; }
+.table-thumb { width: 46px; height: 46px; border-radius: var(--radius-sm); object-fit: cover; background: var(--teal-200); }
+.row-actions { display: flex; gap: 8px; }
+.row-actions button { padding: 6px 12px; font-size: .78rem; }
+
+/* ---------- Product form ---------- */
+.form-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  max-width: 720px;
+}
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.form-grid .field.full { grid-column: 1 / -1; }
+
+.image-upload-box {
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px;
+  text-align: center;
+  margin-bottom: 16px;
+}
+.image-upload-box img { max-height: 140px; margin: 0 auto 10px; border-radius: var(--radius-sm); }
+.image-upload-box .hint { font-size: .76rem; color: var(--text-soft); margin-top: 6px; }
+
+.form-actions { display: flex; gap: 10px; margin-top: 8px; }
+
+/* ---------- Settings page ---------- */
+.settings-grid { display: grid; gap: 20px; max-width: 600px; }
+.logo-preview-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+.logo-preview-row img { width: 56px; height: 56px; border-radius: var(--radius-sm); object-fit: cover; background: var(--teal-200); }
+
+@media (max-width: 880px) {
+  .admin-shell { flex-direction: column; }
+  .admin-sidebar { width: 100%; flex-direction: row; align-items: center; overflow-x: auto; padding: 12px; }
+  .admin-sidebar .brand { margin-bottom: 0; }
+  .nav-spacer { display: none; }
+  .admin-main { padding: 20px; }
+  .form-grid { grid-template-columns: 1fr; }
+}
